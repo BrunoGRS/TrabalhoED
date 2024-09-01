@@ -4,19 +4,19 @@
 
 Projeto consiste em criar uma árvore binária com as seguintes funções:
 
-- 1. Inserir nó
-- 2. Exibir árvore
-- 3. Buscar nó
-- 4. Exibir árvore em pré-ordem
-- 5. Exibir árvore em em ordem
-- 6. Exibir árvore em pós-ordem
-- 7. Remover nó
-- 8. Altura da árvore
-- 9. Total de nós da árvore
-- 10. Total de folhas da árvore
-- 11. Total de sub-árvores
+- Inserir nó
+- Exibir árvore
+- Buscar nó
+- Exibir árvore em pré-ordem
+- Exibir árvore em em ordem
+- Exibir árvore em pós-ordem
+- Remover nó
+- Altura da árvore
+- Total de nós da árvore
+- Total de folhas da árvore
+- Total de sub-árvores
 
-**Observações**
+***Observações***
 
 
 Cada nó deve receber um número inteiro onde, como visto em aula, se o valor do
