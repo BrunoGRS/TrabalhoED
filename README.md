@@ -17,6 +17,8 @@ Projeto consiste em criar uma árvore binária com as seguintes funções:
 - 11. Total de sub-árvores
 
 **Observações**
+
+
 Cada nó deve receber um número inteiro onde, como visto em aula, se o valor do
 inteiro for menor que o nó pai, deve ser armazenado ao lado esquerdo da
 árvore, se for maior, ao lado direito. Além de dar a opção de inserir, o
