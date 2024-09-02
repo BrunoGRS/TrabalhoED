@@ -66,7 +66,7 @@ void imprimirArvore(Arvore arvore) {
             if (M[i][j] == 0) {
                 printf(" ");
             } else {
-                printf("%d", M[i][j], " ");
+                printf("%d", M[i][j]);
             }
         }
         
@@ -97,8 +97,8 @@ void inserirNoDireta(No *no, int valor){
 };
 
 No* inserirNo(No* no, int valor){
-     
-        if(no == NULL){
+
+        if(no == 0 or no == NULL){
             no = new No(valor);
             no->data = valor;
             no->esquerda = no->direita = NULL;
@@ -112,65 +112,134 @@ No* inserirNo(No* no, int valor){
         while (getchar() != '\n');
 }
 
-No* buscaBinaria(No* no, int valor){
+void exibirPreOrdem(No *no){
     if(no == NULL){
+        return;
+    }else{
+        printf("%d",no->data);
+        printf(", ");
+        exibirPreOrdem(no->esquerda);
+        exibirPreOrdem(no->direita);
+    }
+}
+
+void exibirOrdem(No *no){
+    if(no == NULL){
+        return;
+    }else{
+        exibirOrdem(no->esquerda);
+        printf("%d",no->data);
+        printf(", ");
+        exibirOrdem(no->direita);
+    }
+}
+
+void exibirPosOrdem(No *no){
+    if(no == NULL){
+        return;
+    }else{
+        exibirPosOrdem(no->esquerda);
+        exibirPosOrdem(no->direita);
+        printf("%d",no->data);
+        printf(", ");
+    }
+}
+
+No* buscaBinaria(No* no, int valor){
+    if(no == 0 or no == NULL){
         return NULL;
     }else if(valor < no->data){
         return buscaBinaria(no->esquerda, valor);
     }else{ if(valor > no->data){
         return buscaBinaria(no->direita, valor);
-    }else{
-        return no;
-        }   
+        }  
     }
+
+    return no;
 }
 
 int main()
 {
-   int opcao;
+    int opcao;
     Arvore arv;
 
-    while (1) {
+    while (true) {
         // Exibe o menu
-        printf("1. Inserir Nó\n");
-        scanf("%d",&opcao);
+        printf("\n");
+        printf("1. Inserir No\n");
+        printf("2. Imprimir No\n");
+        printf("3. Buscar No\n");
+        printf("4. Exibir em Pre Ordem\n");
+        printf("5. Exibir em Ordem\n");
+        printf("6. Exibir em Pos Ordem\n");
+        printf("7. Remover No\n");
+        printf("8. Altura da Arvore\n");
+        printf("9. Total de Nos da Arvore\n");
+        printf("10. Total de filhas da Arvore\n");
+        printf("11. Total de Sub-Arvore\n");
+        printf("0. Sair\n");
+        printf("->");
+        scanf("%d", &opcao);
+        printf("\n");
 
         switch(opcao) {
             case 1:
+            {
                 int valor;
-                
-                printf("\n");
                 printf("Digite o valor do No: ");
-                    while (scanf("%d", valor) != 1) {
-                        printf("Entrada inválida. Por favor, insira um número inteiro: ");
-                        while (getchar() != '\n');
-                            }
-
-                inserirNo(arv.root, valor);
+                while (scanf("%d", &valor) != 1) {
+                    printf("Entrada inválida. Por favor, insira um número inteiro: ");
+                    while (getchar() != '\n');
+                }
+                arv.root = inserirNo(arv.root, valor);
                 break;
+            }
+            case 2:
+            {
+                imprimirArvore(arv);
+            }
             case 3:
-                imprimirArvore(arv);
+            {
+                int valor;
+                printf("Digite o valor do No: ");
+                while (scanf("%d", &valor) != 1) {  // Corrigido o scanf
+                    printf("Entrada inválida. Por favor, insira um número inteiro: ");
+                    while (getchar() != '\n'); // Limpa o buffer de entrada
+                }
+                No* vl = buscaBinaria(arv.root, valor);
+
+                if(vl != NULL or vl != 0){
+                    printf("O valor foi encontrado!\n");
                 break;
+                }
+            }
             case 4:
-                imprimirArvore(arv);
+            {
+                exibirPreOrdem(arv.root);
                 break;
+            }
             case 5:
-                imprimirArvore(arv);
+            {
+                exibirOrdem(arv.root);
                 break;
+            }
             case 6:
-                imprimirArvore(arv);
+            {
+                exibirPosOrdem(arv.root);
                 break;
+            }
             case 7:
-                imprimirArvore(arv);
-                break;
             case 8:
-                imprimirArvore(arv);
+            {
+                int alturaArvore = altura(arv.root);
+                printf("A Arvore tem a altura: %d", alturaArvore);
                 break;
+            }
             case 0:
-                printf("Saindo...");
+                printf("Saindo...\n");
                 return 0;
             default:
-                printf("Opção Inválida. Tente novamente!");
+                printf("Opcao Invalida. Tente novamente!\n");
                 break;
         }
     }
