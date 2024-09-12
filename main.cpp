@@ -1,3 +1,4 @@
+// 50, 67, 15, 52, 70 10, 16, 8, 76
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -152,7 +153,6 @@ No *buscaBinaria(No *no, int valor)
   return no;
 }
 
-// Função para buscar um valor na árvore e exibir informações sobre o nó
 void buscarNo(No *root, int valor, No *pai = NULL)
 {
   // Se o nó atual for nulo, o valor não foi encontrado
@@ -175,11 +175,10 @@ void buscarNo(No *root, int valor, No *pai = NULL)
     }
     else
     {
-      // Exibe quem é o nó pai
       printf("O valor %d tem como pai o valor %d.\n", valor, pai->data);
     }
 
-    // Exibe os nós filhos, se existirem
+    ////
     if (root->esquerda != NULL)
     {
       printf("Filho à esquerda: %d\n", root->esquerda->data);
@@ -189,6 +188,7 @@ void buscarNo(No *root, int valor, No *pai = NULL)
       printf("Não há filho à esquerda.\n");
     }
 
+    ////
     if (root->direita != NULL)
     {
       printf("Filho à direita: %d\n", root->direita->data);
@@ -213,7 +213,6 @@ void buscarNo(No *root, int valor, No *pai = NULL)
   }
 }
 
-// Função auxiliar para encontrar o menor valor de uma subárvore (sucessor in-order)
 No *minValueNode(No *node)
 {
   No *current = node;
@@ -357,7 +356,7 @@ int main()
       {
         printf("Entrada inválida. Por favor, insira um número inteiro: ");
         while (getchar() != '\n')
-          ; // Limpa o buffer
+          ;
       }
       arv.root = inserirNo(arv.root, valor);
       break;
@@ -375,7 +374,7 @@ int main()
       {
         printf("Entrada inválida. Por favor, insira um número inteiro: ");
         while (getchar() != '\n')
-          ; // Limpa o buffer de entrada
+          ;
       }
       No *vl = buscaBinaria(arv.root, valor);
 
@@ -422,7 +421,7 @@ int main()
     }
     case 8:
     {
-      int alturaArvore = altura(arv.root);
+      int alturaArvore = altura(arv.root) - 1;
       printf("A Arvore tem a altura: %d\n", alturaArvore);
       break;
     }
@@ -440,7 +439,7 @@ int main()
     }
     case 11:
     {
-      int totalsubarvores = contarSubArvores(arv.root);
+      int totalsubarvores = contarSubArvores(arv.root) - 1;
       printf("O total de Sub-árvores é de: %d\n", totalsubarvores);
       break;
     }
