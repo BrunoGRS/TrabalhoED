@@ -155,20 +155,16 @@ No *buscaBinaria(No *no, int valor)
 
 void buscarNo(No *root, int valor, No *pai = NULL)
 {
-  // Se o nó atual for nulo, o valor não foi encontrado
   if (root == NULL)
   {
     printf("Valor %d não encontrado na árvore.\n", valor);
     return;
   }
 
-  // Se encontramos o valor
   if (root->data == valor)
   {
-    // Exibe o valor encontrado
     printf("Valor %d encontrado.\n", valor);
 
-    // Se o nó é a raiz
     if (pai == NULL)
     {
       printf("Valor solicitado é o nó raiz.\n");
@@ -178,7 +174,6 @@ void buscarNo(No *root, int valor, No *pai = NULL)
       printf("O valor %d tem como pai o valor %d.\n", valor, pai->data);
     }
 
-    ////
     if (root->esquerda != NULL)
     {
       printf("Filho à esquerda: %d\n", root->esquerda->data);
@@ -188,7 +183,6 @@ void buscarNo(No *root, int valor, No *pai = NULL)
       printf("Não há filho à esquerda.\n");
     }
 
-    ////
     if (root->direita != NULL)
     {
       printf("Filho à direita: %d\n", root->direita->data);
@@ -201,12 +195,10 @@ void buscarNo(No *root, int valor, No *pai = NULL)
     return;
   }
 
-  // Se o valor é menor que o nó atual, vá para a subárvore à esquerda
   if (valor < root->data)
   {
     buscarNo(root->esquerda, valor, root);
   }
-  // Se o valor é maior que o nó atual, vá para a subárvore à direita
   else
   {
     buscarNo(root->direita, valor, root);
@@ -217,7 +209,6 @@ No *minValueNode(No *node)
 {
   No *current = node;
 
-  // Encontra o nó mais à esquerda, que será o menor valor
   while (current && current->esquerda != NULL)
     current = current->esquerda;
 
@@ -226,24 +217,19 @@ No *minValueNode(No *node)
 
 No *removerNo(No *root, int valor)
 {
-  // Se a árvore está vazia
   if (root == NULL)
     return root;
 
-  // Se o valor a ser removido for menor que o valor da raiz, ele estará à esquerda
   if (valor < root->data)
   {
     root->esquerda = removerNo(root->esquerda, valor);
   }
-  // Se o valor a ser removido for maior que o valor da raiz, ele estará à direita
   else if (valor > root->data)
   {
     root->direita = removerNo(root->direita, valor);
   }
-  // Se o valor for o mesmo que o valor da raiz, esse é o nó a ser removido
   else
   {
-    // Caso 1: Nó com um ou nenhum filho
     if (root->esquerda == NULL)
     {
       No *temp = root->direita;
@@ -257,14 +243,10 @@ No *removerNo(No *root, int valor)
       return temp;
     }
 
-    // Caso 2: Nó com dois filhos
-    // Pegue o sucessor in-order (menor valor na subárvore direita)
     No *temp = minValueNode(root->direita);
 
-    // Copie o valor do sucessor in-order para o nó atual
     root->data = temp->data;
 
-    // Remova o sucessor in-order
     root->direita = removerNo(root->direita, temp->data);
   }
 
@@ -276,35 +258,28 @@ int contarNos(No *root)
   if (root == NULL)
     return 0;
 
-  // Retorna 1 (o nó atual) + o total de nós da subárvore esquerda + o total de nós da subárvore direita
   return 1 + contarNos(root->esquerda) + contarNos(root->direita);
 }
 
 int contarFolhas(No *root)
 {
-  // Se a árvore estiver vazia, retorna 0
   if (root == NULL)
     return 0;
 
-  // Se o nó é uma folha (não tem filhos)
   if (root->esquerda == NULL && root->direita == NULL)
     return 1;
 
-  // Senão, conta as folhas das subárvores esquerda e direita
   return contarFolhas(root->esquerda) + contarFolhas(root->direita);
 }
 
 int contarSubArvores(No *root)
 {
-  // Se o nó for nulo, não é uma subárvore
   if (root == NULL)
     return 0;
 
-  // Se o nó não tem filhos, não conta como subárvore com filhos
   if (root->esquerda == NULL && root->direita == NULL)
     return 0;
 
-  // Contabiliza a subárvore atual se o nó tiver filhos
   return 1 + contarSubArvores(root->esquerda) + contarSubArvores(root->direita);
 }
 
@@ -324,9 +299,7 @@ int main()
 
   while (true)
   {
-    limparConsole(); // Limpa o console antes de exibir o menu
-
-    // Exibe o menu
+    limparConsole();
     printf("\n");
     printf("1. Inserir No\n");
     printf("2. Exibir árvore\n");
@@ -344,8 +317,7 @@ int main()
     printf("-> ");
     scanf("%d", &opcao);
 
-    limparConsole(); // Limpa o console antes de executar a tarefa
-
+    limparConsole();
     switch (opcao)
     {
     case 1:
