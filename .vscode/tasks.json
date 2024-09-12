@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar C++", // Nome da tarefa de compilação
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "main.cpp", // Arquivo fonte C++
+        "-o",
+        "app" // Nome do executável de saída
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "dependsOn": "Executar app c++"
+    },
+    {
+      "label": "Executar app c++",
+      "type": "shell",
+      "command": "./app",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    }
+  ]
+}
