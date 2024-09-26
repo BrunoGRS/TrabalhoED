@@ -283,6 +283,19 @@ int contarSubArvores(No *root)
   return 1 + contarSubArvores(root->esquerda) + contarSubArvores(root->direita);
 }
 
+void inverterArvore(No *root)
+{
+  if (root == NULL)
+    return;
+
+  No *temp = root->esquerda;
+  root->esquerda = root->direita;
+  root->direita = temp;
+
+  inverterArvore(root->esquerda);
+  inverterArvore(root->direita);
+}
+
 void limparConsole()
 {
 #if defined(_WIN32)
@@ -313,6 +326,7 @@ int main()
     printf("10. Total de folhas da árvore\n");
     printf("11. Total de sub-árvore\n");
     printf("12. Buscar No detalhado\n");
+    printf("13. Inverter árvore\n");
     printf("0. Sair\n");
     printf("-> ");
     scanf("%d", &opcao);
@@ -430,6 +444,12 @@ int main()
 
       break;
     }
+    case 13:
+    {
+      inverterArvore(arv.root);
+      printf("Árvore invertida com sucesso!\n");
+      break;
+    }
     case 0:
       printf("Saindo...\n");
       return 0;
@@ -438,7 +458,7 @@ int main()
       break;
     }
 
-    if (opcao < 13 && opcao >= 0)
+    if (opcao < 14 && opcao >= 0)
     {
       printf("\nPressione Enter para continuar...");
       getchar();
